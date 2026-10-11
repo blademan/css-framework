@@ -1,0 +1,118 @@
+@layer tokens {
+  :root {
+    color-scheme: light dark;
+
+    /* Typography ------------------------------------------------------- */
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-bold: 700;
+    --leading-tight: 1.2;
+    --leading-snug: 1.4;
+    --leading-normal: 1.6;
+    --tracking-tight: -0.02em;
+    --tracking-wide: 0.04em;
+
+    /* Fluid type scale: 16px → 18px base, ratio 1.2 → 1.25, 320px → 1240px viewport */
+    --step-down-2: clamp(0.6944rem, 0.6856rem + 0.0444vw, 0.72rem);
+    --step-down-1: clamp(0.8333rem, 0.8101rem + 0.1159vw, 0.9rem);
+    --step-0: clamp(1rem, 0.9565rem + 0.2174vw, 1.125rem);
+    --step-1: clamp(1.2rem, 1.1283rem + 0.3587vw, 1.4063rem);
+    --step-2: clamp(1.44rem, 1.3295rem + 0.5527vw, 1.7578rem);
+    --step-3: clamp(1.728rem, 1.5648rem + 0.8161vw, 2.1973rem);
+    --step-4: clamp(2.0736rem, 1.8395rem + 1.1704vw, 2.7466rem);
+    --step-5: clamp(2.4883rem, 2.1597rem + 1.6433vw, 3.4332rem);
+    --step-6: clamp(2.986rem, 2.5319rem + 2.2705vw, 4.2915rem);
+
+    /* Fluid space scale: same viewport range as the type scale */
+    --space-3xs: clamp(0.25rem, 0.2391rem + 0.0543vw, 0.2813rem);
+    --space-2xs: clamp(0.5rem, 0.4783rem + 0.1087vw, 0.5625rem);
+    --space-xs: clamp(0.75rem, 0.7174rem + 0.163vw, 0.8438rem);
+    --space-s: clamp(1rem, 0.9565rem + 0.2174vw, 1.125rem);
+    --space-m: clamp(1.5rem, 1.4348rem + 0.3261vw, 1.6875rem);
+    --space-l: clamp(2rem, 1.913rem + 0.4348vw, 2.25rem);
+    --space-xl: clamp(3rem, 2.8696rem + 0.6522vw, 3.375rem);
+    --space-2xl: clamp(4rem, 3.8261rem + 0.8696vw, 4.5rem);
+    --space-3xl: clamp(6rem, 5.7391rem + 1.3043vw, 6.75rem);
+
+    /* Colors: light-dark(light, dark). Force a theme with data-theme="light|dark". */
+    --color-bg: light-dark(#fff, #0f1115);
+    --color-surface: light-dark(#f5f6f8, #181b21);
+    --color-surface-2: light-dark(#eceef2, #21252d);
+    --color-text: light-dark(#14171c, #eceef2);
+    --color-text-muted: light-dark(#4d5562, #a6adba);
+    --color-border: light-dark(#d5d9e0, #343a45);
+    --color-primary: light-dark(#1d4ed8, #7aa2ff);
+    --color-primary-hover: light-dark(#1e40af, #a3bdff);
+    --color-on-primary: light-dark(#fff, #0b1020);
+    --color-link: light-dark(#1d4ed8, #8fb0ff);
+    --color-focus: light-dark(#1d4ed8, #8fb0ff);
+    --color-selection: light-dark(#bfd3ff, #2d4a8a);
+    --color-success: light-dark(#15803d, #4ade80);
+    --color-warning: light-dark(#a16207, #facc15);
+    --color-danger: light-dark(#b91c1c, #f87171);
+
+    /* Radius */
+    --radius-s: 0.25rem;
+    --radius-m: 0.5rem;
+    --radius-l: 1rem;
+    --radius-full: 9999px;
+
+    /* Borders */
+    --border-width: 1px;
+    --border-width-thick: 2px;
+    --border: var(--border-width) solid var(--color-border);
+
+    /* Shadows */
+    --shadow-color: light-dark(220 20% 12%, 0 0% 0%);
+    --shadow-s: 0 1px 2px hsl(var(--shadow-color) / 12%);
+    --shadow-m: 0 4px 12px hsl(var(--shadow-color) / 14%);
+    --shadow-l: 0 12px 32px hsl(var(--shadow-color) / 20%);
+
+    /* Transitions */
+    --duration-fast: 120ms;
+    --duration-base: 200ms;
+    --duration-slow: 360ms;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --transition: var(--duration-base) var(--ease-out);
+
+    /* Container widths (max-inline-size for layout primitives) */
+    --container-narrow: 40rem;
+    --container-base: 64rem;
+    --container-wide: 80rem;
+    --measure: 65ch;
+
+    /* Breakpoints — reference only: custom properties cannot be used inside
+       @media/@container conditions. Keep these values in sync by hand. */
+    --bp-s: 30em; /* 480px */
+    --bp-m: 48em; /* 768px */
+    --bp-l: 64em; /* 1024px */
+    --bp-xl: 80em; /* 1280px */
+
+    /* Accessibility */
+    --tap-target: 2.75rem; /* 44px minimum interactive size */
+    --focus-ring: var(--border-width-thick) solid var(--color-focus);
+    --focus-offset: 2px;
+
+    /* Z-index scale */
+    --z-below: -1;
+    --z-base: 0;
+    --z-raised: 10;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-overlay: 300;
+    --z-modal: 400;
+    --z-toast: 500;
+  }
+
+  :root[data-theme="light"] {
+    color-scheme: light;
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+  }
+}
