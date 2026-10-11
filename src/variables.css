@@ -2,7 +2,6 @@
   :root {
     color-scheme: light dark;
 
-    /* Typography ------------------------------------------------------- */
     --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
     --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
@@ -15,95 +14,102 @@
     --tracking-tight: -0.02em;
     --tracking-wide: 0.04em;
 
-    /* Fluid type scale: 16px → 18px base, ratio 1.2 → 1.25, 320px → 1240px viewport */
-    --step-down-2: clamp(0.6944rem, 0.6856rem + 0.0444vw, 0.72rem);
-    --step-down-1: clamp(0.8333rem, 0.8101rem + 0.1159vw, 0.9rem);
-    --step-0: clamp(1rem, 0.9565rem + 0.2174vw, 1.125rem);
-    --step-1: clamp(1.2rem, 1.1283rem + 0.3587vw, 1.4063rem);
-    --step-2: clamp(1.44rem, 1.3295rem + 0.5527vw, 1.7578rem);
-    --step-3: clamp(1.728rem, 1.5648rem + 0.8161vw, 2.1973rem);
-    --step-4: clamp(2.0736rem, 1.8395rem + 1.1704vw, 2.7466rem);
-    --step-5: clamp(2.4883rem, 2.1597rem + 1.6433vw, 3.4332rem);
-    --step-6: clamp(2.986rem, 2.5319rem + 2.2705vw, 4.2915rem);
+    /* Fluid scale inputs. Widths and sizes are plain rem numbers: 20 = 320px, 1 = 16px.
+       Body text runs from 16px at 320px to 18px at 1240px; each heading step is
+       1.2x the last on a phone and 1.25x on a desktop. Change the numbers, not the steps. */
+    --narrow: 20;
+    --wide: 77.5;
+    --size-narrow: 1;
+    --size-wide: 1.125;
+    --ratio-narrow: 1.2;
+    --ratio-wide: 1.25;
 
-    /* Fluid space scale: m is the base (1rem → 1.125rem); same viewport range as type */
-    --space-xs: clamp(0.5rem, 0.4783rem + 0.1087vw, 0.5625rem);
-    --space-s: clamp(0.75rem, 0.7174rem + 0.163vw, 0.8438rem);
-    --space-m: clamp(1rem, 0.9565rem + 0.2174vw, 1.125rem);
-    --space-l: clamp(1.5rem, 1.4348rem + 0.3261vw, 1.6875rem);
-    --space-xl: clamp(2rem, 1.913rem + 0.4348vw, 2.25rem);
-    --space-xxl: clamp(3rem, 2.8696rem + 0.6522vw, 3.375rem);
+    /* 0 at the narrow width, 1rem at the wide width, a straight line between */
+    --fluid: clamp(0rem, (100vw - var(--narrow) * 1rem) / (var(--wide) - var(--narrow)), 1rem);
+    --at-narrow: calc(var(--size-narrow) * (1rem - var(--fluid)));
+    --at-wide: calc(var(--size-wide) * var(--fluid));
 
-    /* Section block padding; --gutter is the shared inline page padding */
-    --gutter: clamp(1rem, 0.6522rem + 1.7391vw, 2rem);
-    --section-space-xs: clamp(2rem, 1.8261rem + 0.8696vw, 2.5rem);
-    --section-space-s: clamp(3rem, 2.6522rem + 1.7391vw, 4rem);
-    --section-space-m: clamp(4rem, 3.3043rem + 3.4783vw, 6rem);
-    --section-space-l: clamp(6rem, 4.9565rem + 5.2174vw, 9rem);
-    --section-space-xl: clamp(8rem, 6.6087rem + 6.9565vw, 12rem);
-    --section-space-xxl: clamp(12rem, 10.6087rem + 6.9565vw, 16rem);
+    /* Type steps */
+    --step-down-2: calc(var(--step-down-1) / var(--ratio-narrow));
+    --step-down-1: calc(var(--step-0) / var(--ratio-narrow));
+    --step-0: calc(var(--at-narrow) + var(--at-wide));
+    --step-1: calc(var(--at-narrow) * var(--ratio-narrow) + var(--at-wide) * var(--ratio-wide));
+    --step-2: calc(var(--at-narrow) * pow(var(--ratio-narrow), 2) + var(--at-wide) * pow(var(--ratio-wide), 2));
+    --step-3: calc(var(--at-narrow) * pow(var(--ratio-narrow), 3) + var(--at-wide) * pow(var(--ratio-wide), 3));
+    --step-4: calc(var(--at-narrow) * pow(var(--ratio-narrow), 4) + var(--at-wide) * pow(var(--ratio-wide), 4));
+    --step-5: calc(var(--at-narrow) * pow(var(--ratio-narrow), 5) + var(--at-wide) * pow(var(--ratio-wide), 5));
+    --step-6: calc(var(--at-narrow) * pow(var(--ratio-narrow), 6) + var(--at-wide) * pow(var(--ratio-wide), 6));
 
-    /* Colors: light-dark(light, dark). Force a theme with data-theme="light|dark". */
-    --color-bg: light-dark(#fff, #0f1115);
-    --color-surface: light-dark(#f5f6f8, #181b21);
-    --color-surface-2: light-dark(#eceef2, #21252d);
-    --color-text: light-dark(#14171c, #eceef2);
-    --color-text-muted: light-dark(#4d5562, #a6adba);
-    --color-border: light-dark(#d5d9e0, #343a45);
-    --color-primary: light-dark(#1d4ed8, #7aa2ff);
-    --color-primary-hover: light-dark(#1e40af, #a3bdff);
-    --color-on-primary: light-dark(#fff, #0b1020);
-    --color-link: light-dark(#1d4ed8, #8fb0ff);
-    --color-focus: light-dark(#1d4ed8, #8fb0ff);
-    --color-selection: light-dark(#bfd3ff, #2d4a8a);
-    --color-success: light-dark(#15803d, #4ade80);
-    --color-warning: light-dark(#a16207, #facc15);
-    --color-danger: light-dark(#b91c1c, #f87171);
+    /* Space scale: multiples of step 0, so space grows as much as body text. m is the base. */
+    --space-xs: calc(0.5 * var(--step-0));
+    --space-s: calc(0.75 * var(--step-0));
+    --space-m: var(--step-0);
+    --space-l: calc(1.5 * var(--step-0));
+    --space-xl: calc(2 * var(--step-0));
+    --space-xxl: calc(3 * var(--step-0));
 
-    /* Radius */
+    /* Pairs: a small size on a phone, a larger one on a desktop (a x narrow + b x wide).
+       For layout only, never for font sizes. */
+    --gutter: calc(1 * var(--at-narrow) + 2 * var(--at-wide));
+    --section-space-xs: calc(2 * var(--at-narrow) + 3 * var(--at-wide));
+    --section-space-s: calc(3 * var(--at-narrow) + 4.5 * var(--at-wide));
+    --section-space-m: calc(4 * var(--at-narrow) + 6 * var(--at-wide));
+    --section-space-l: calc(6 * var(--at-narrow) + 9 * var(--at-wide));
+    --section-space-xl: calc(8 * var(--at-narrow) + 12 * var(--at-wide));
+    --section-space-xxl: calc(12 * var(--at-narrow) + 16 * var(--at-wide));
+
+    /* Colors in oklch. Grays use none as the hue. Each token holds light and dark. */
+    --color-bg: light-dark(oklch(100% 0 none), oklch(17.7% 0.009 264.3deg));
+    --color-surface: light-dark(oklch(97.3% 0 none), oklch(22.2% 0.013 264.3deg));
+    --color-surface-2: light-dark(oklch(94.9% 0.006 264.5deg), oklch(26.4% 0.016 264.2deg));
+    --color-text: light-dark(oklch(20.4% 0.011 260.7deg), oklch(94.9% 0.006 264.5deg));
+    --color-text-muted: light-dark(oklch(44.7% 0.024 260.1deg), oklch(74.6% 0.02 263deg));
+    --color-border: light-dark(oklch(88.4% 0.011 261.8deg), oklch(34.7% 0.021 262.6deg));
+    --color-primary: light-dark(oklch(48.8% 0.217 264.4deg), oklch(72.3% 0.143 265.4deg));
+    --color-primary-hover: light-dark(
+      color-mix(in oklch, var(--color-primary), black 15%),
+      color-mix(in oklch, var(--color-primary), white 20%)
+    );
+    --color-primary-subtle: color-mix(in oklch, var(--color-primary) 12%, transparent);
+    --color-on-primary: light-dark(oklch(100% 0 none), oklch(17.7% 0.034 269.6deg));
+    --color-selection: color-mix(in oklch, var(--color-primary) 25%, transparent);
+    --color-success: light-dark(oklch(52.7% 0.137 150.1deg), oklch(80% 0.182 151.7deg));
+    --color-warning: light-dark(oklch(55.4% 0.121 66.4deg), oklch(86.1% 0.173 91.9deg));
+    --color-danger: light-dark(oklch(50.5% 0.19 27.5deg), oklch(71.1% 0.166 22.2deg));
     --radius-s: 0.25rem;
     --radius-m: 0.5rem;
     --radius-l: 1rem;
     --radius-full: 9999px;
-
-    /* Borders */
     --border-width: 1px;
     --border-width-thick: 2px;
     --border: var(--border-width) solid var(--color-border);
+    --shadow-color: light-dark(oklch(25% 0.02 260deg), oklch(0% 0 none));
+    --shadow-s: 0 1px 2px color-mix(in oklch, var(--shadow-color) 12%, transparent);
+    --shadow-m: 0 4px 12px color-mix(in oklch, var(--shadow-color) 14%, transparent);
+    --shadow-l: 0 12px 32px color-mix(in oklch, var(--shadow-color) 20%, transparent);
 
-    /* Shadows */
-    --shadow-color: light-dark(220 20% 12%, 0 0% 0%);
-    --shadow-s: 0 1px 2px hsl(var(--shadow-color) / 12%);
-    --shadow-m: 0 4px 12px hsl(var(--shadow-color) / 14%);
-    --shadow-l: 0 12px 32px hsl(var(--shadow-color) / 20%);
-
-    /* Transitions */
+    /* Motion: two easing curves; a UI transition stays at 300ms or less */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
     --duration-fast: 120ms;
     --duration-base: 200ms;
-    --duration-slow: 360ms;
-    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --duration-slow: 300ms;
     --transition: var(--duration-base) var(--ease-out);
 
-    /* Container widths (max-inline-size for layout primitives) */
+    /* Container widths: --content is the page column, the breakout is 1.25x wider */
     --container-narrow: 40rem;
     --container-base: 64rem;
     --container-wide: 80rem;
     --measure: 65ch;
 
-    /* Breakpoints — reference only: custom properties cannot be used inside
-       @media/@container conditions. Keep these values in sync by hand. */
-    --bp-s: 30em; /* 480px */
-    --bp-m: 48em; /* 768px */
-    --bp-l: 64em; /* 1024px */
-    --bp-xl: 80em; /* 1280px */
-
-    /* Accessibility */
-    --tap-target: 2.75rem; /* 44px minimum interactive size */
-    --focus-ring: var(--border-width-thick) solid var(--color-focus);
-    --focus-offset: 2px;
-
-    /* Z-index scale */
+    /* Breakpoints: reference only, custom properties cannot be used in media queries */
+    --bp-s: 30em;
+    --bp-m: 48em;
+    --bp-l: 64em;
+    --bp-xl: 80em;
+    --tap-target: 2.75rem;
+    --focus-ring: max(2px, 0.08em) solid var(--color-primary);
+    --focus-offset: 0.25em;
     --z-below: -1;
     --z-base: 0;
     --z-raised: 10;
