@@ -1,34 +1,40 @@
 @layer reset {
   :where(*, *::before, *::after) {
     box-sizing: border-box;
+    min-inline-size: 0;
   }
 
   :where(*:not(dialog)) {
     margin: 0;
   }
 
-  :where(html) {
+  :where(:root) {
+    interpolate-size: allow-keywords;
+    scrollbar-gutter: stable;
+    text-wrap: pretty;
+    overflow-wrap: break-word;
+    font-synthesis: none;
+    tab-size: 4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
     /* stylelint-disable-next-line property-no-vendor-prefix -- iOS Safari still needs the prefix */
     -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    tab-size: 4;
-    scroll-behavior: smooth;
-    interpolate-size: allow-keywords;
+    -webkit-tap-highlight-color: transparent;
   }
 
   :where(body) {
-    min-block-size: 100vh;
-    min-block-size: 100dvh;
+    min-block-size: 100svh;
     line-height: var(--leading-normal, 1.6);
-    -webkit-font-smoothing: antialiased;
   }
 
-  :where(img, picture, video, canvas, svg, audio, iframe, embed, object) {
+  :where(h1, h2, h3, h4) {
+    text-wrap: balance;
+  }
+
+  :where(img, svg, video) {
     display: block;
     max-inline-size: 100%;
-  }
-
-  :where(img, video) {
     block-size: auto;
   }
 
@@ -36,6 +42,21 @@
     font: inherit;
     color: inherit;
     letter-spacing: inherit;
+  }
+
+  :where(input, textarea, select) {
+    font-size: max(16px, 1rem);
+  }
+
+  :where(button, a, [role="button"]) {
+    touch-action: manipulation;
+  }
+
+  :where(button, [role="button"]) {
+    user-select: none;
+
+    /* stylelint-disable-next-line property-no-vendor-prefix -- older Safari needs the prefix */
+    -webkit-user-select: none;
   }
 
   :where(button, [type="button"], [type="submit"], [type="reset"], summary, label[for]) {
@@ -56,18 +77,6 @@
     resize: vertical;
   }
 
-  :where(p, h1, h2, h3, h4, h5, h6) {
-    overflow-wrap: break-word;
-  }
-
-  :where(p, li, figcaption, blockquote) {
-    text-wrap: pretty;
-  }
-
-  :where(h1, h2, h3, h4, h5, h6) {
-    text-wrap: balance;
-  }
-
   :where(ul[role="list"], ol[role="list"]) {
     list-style: none;
     padding: 0;
@@ -78,14 +87,9 @@
     border-spacing: 0;
   }
 
-  :where(a:not([class])) {
-    text-decoration-skip-ink: auto;
-  }
-
   :where(fieldset) {
     border: 0;
     padding: 0;
-    min-inline-size: 0;
   }
 
   :where(:target) {
@@ -97,16 +101,10 @@
     display: none !important;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    :where(html) {
-      scroll-behavior: auto;
-    }
-
-    :where(*, *::before, *::after) {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
+  /* Smooth scrolling is motion, so it is opt-in */
+  @media (prefers-reduced-motion: no-preference) {
+    :where(:root) {
+      scroll-behavior: smooth;
     }
   }
 }
