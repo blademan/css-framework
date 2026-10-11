@@ -34,6 +34,15 @@
     --space-xl: clamp(2rem, 1.913rem + 0.4348vw, 2.25rem);
     --space-xxl: clamp(3rem, 2.8696rem + 0.6522vw, 3.375rem);
 
+    /* Section block padding; --gutter is the shared inline page padding */
+    --gutter: clamp(1rem, 0.6522rem + 1.7391vw, 2rem);
+    --section-space-xs: clamp(2rem, 1.8261rem + 0.8696vw, 2.5rem);
+    --section-space-s: clamp(3rem, 2.6522rem + 1.7391vw, 4rem);
+    --section-space-m: clamp(4rem, 3.3043rem + 3.4783vw, 6rem);
+    --section-space-l: clamp(6rem, 4.9565rem + 5.2174vw, 9rem);
+    --section-space-xl: clamp(8rem, 6.6087rem + 6.9565vw, 12rem);
+    --section-space-xxl: clamp(12rem, 10.6087rem + 6.9565vw, 16rem);
+
     /* Colors: light-dark(light, dark). Force a theme with data-theme="light|dark". */
     --color-bg: light-dark(#fff, #0f1115);
     --color-surface: light-dark(#f5f6f8, #181b21);

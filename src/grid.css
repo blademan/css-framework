@@ -169,6 +169,31 @@
     order: 1;
   }
 
+  /* Section block padding. Inline gutter is untouched; pick a size per section. */
+  .section--xs {
+    padding-block: var(--section-space-xs);
+  }
+
+  .section--s {
+    padding-block: var(--section-space-s);
+  }
+
+  .section--m {
+    padding-block: var(--section-space-m);
+  }
+
+  .section--l {
+    padding-block: var(--section-space-l);
+  }
+
+  .section--xl {
+    padding-block: var(--section-space-xl);
+  }
+
+  .section--xxl {
+    padding-block: var(--section-space-xxl);
+  }
+
   /* Vertical rhythm between direct children */
   .stack {
     display: flex;
