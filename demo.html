@@ -8,16 +8,16 @@
   <style>
     /* Demo-only helpers; not part of the framework */
     .swatch { block-size: 3.5rem; border: var(--border); border-radius: var(--radius-m); }
-    .box { padding: var(--space-s); background: var(--color-surface); border: var(--border); border-radius: var(--radius-m); }
+    .box { padding: var(--space-m); background: var(--color-surface); border: var(--border); border-radius: var(--radius-m); }
     .bar { block-size: 1rem; background: var(--color-primary); border-radius: var(--radius-s); }
     .tile { display: grid; place-items: center; block-size: 5rem; background: var(--color-surface); }
     .meta { font-family: var(--font-mono); font-size: var(--step-down-1); color: var(--color-text-muted); }
   </style>
 </head>
 <body>
-  <main class="container stack" style="--stack-space: var(--space-xl); padding-block: var(--space-xl)">
+  <main class="container stack" style="--stack-space: var(--space-xxl); padding-block: var(--space-xxl)">
 
-    <header class="stack" style="--stack-space: var(--space-xs)">
+    <header class="stack" style="--stack-space: var(--space-s)">
       <h1>css-framework</h1>
       <p>Zero-dependency, zero-build vanilla CSS. Resize the window and toggle your OS light/dark mode to see the fluid scales and color tokens respond.</p>
       <p><a href="#layouts">Jump to layouts</a> · <a href="#typography">Jump to typography</a></p>
@@ -27,23 +27,23 @@
       <h2>Tokens</h2>
 
       <h3>Colors</h3>
-      <div class="grid grid-4" style="--grid-min: 9rem">
-        <div class="stack" style="--stack-space: var(--space-3xs)"><div class="swatch" style="background: var(--color-bg)"></div><span class="meta">--color-bg</span></div>
-        <div class="stack" style="--stack-space: var(--space-3xs)"><div class="swatch" style="background: var(--color-surface)"></div><span class="meta">--color-surface</span></div>
-        <div class="stack" style="--stack-space: var(--space-3xs)"><div class="swatch" style="background: var(--color-surface-2)"></div><span class="meta">--color-surface-2</span></div>
-        <div class="stack" style="--stack-space: var(--space-3xs)"><div class="swatch" style="background: var(--color-text)"></div><span class="meta">--color-text</span></div>
-        <div class="stack" style="--stack-space: var(--space-3xs)"><div class="swatch" style="background: var(--color-text-muted)"></div><span class="meta">--color-text-muted</span></div>
-        <div class="stack" style="--stack-space: var(--space-3xs)"><div class="swatch" style="background: var(--color-border)"></div><span class="meta">--color-border</span></div>
-        <div class="stack" style="--stack-space: var(--space-3xs)"><div class="swatch" style="background: var(--color-primary)"></div><span class="meta">--color-primary</span></div>
-        <div class="stack" style="--stack-space: var(--space-3xs)"><div class="swatch" style="background: var(--color-primary-hover)"></div><span class="meta">--color-primary-hover</span></div>
-        <div class="stack" style="--stack-space: var(--space-3xs)"><div class="swatch" style="background: var(--color-link)"></div><span class="meta">--color-link</span></div>
-        <div class="stack" style="--stack-space: var(--space-3xs)"><div class="swatch" style="background: var(--color-success)"></div><span class="meta">--color-success</span></div>
-        <div class="stack" style="--stack-space: var(--space-3xs)"><div class="swatch" style="background: var(--color-warning)"></div><span class="meta">--color-warning</span></div>
-        <div class="stack" style="--stack-space: var(--space-3xs)"><div class="swatch" style="background: var(--color-danger)"></div><span class="meta">--color-danger</span></div>
+      <div class="grid grid--auto-4" style="--grid-min: 9rem">
+        <div class="stack" style="--stack-space: var(--space-xs)"><div class="swatch" style="background: var(--color-bg)"></div><span class="meta">--color-bg</span></div>
+        <div class="stack" style="--stack-space: var(--space-xs)"><div class="swatch" style="background: var(--color-surface)"></div><span class="meta">--color-surface</span></div>
+        <div class="stack" style="--stack-space: var(--space-xs)"><div class="swatch" style="background: var(--color-surface-2)"></div><span class="meta">--color-surface-2</span></div>
+        <div class="stack" style="--stack-space: var(--space-xs)"><div class="swatch" style="background: var(--color-text)"></div><span class="meta">--color-text</span></div>
+        <div class="stack" style="--stack-space: var(--space-xs)"><div class="swatch" style="background: var(--color-text-muted)"></div><span class="meta">--color-text-muted</span></div>
+        <div class="stack" style="--stack-space: var(--space-xs)"><div class="swatch" style="background: var(--color-border)"></div><span class="meta">--color-border</span></div>
+        <div class="stack" style="--stack-space: var(--space-xs)"><div class="swatch" style="background: var(--color-primary)"></div><span class="meta">--color-primary</span></div>
+        <div class="stack" style="--stack-space: var(--space-xs)"><div class="swatch" style="background: var(--color-primary-hover)"></div><span class="meta">--color-primary-hover</span></div>
+        <div class="stack" style="--stack-space: var(--space-xs)"><div class="swatch" style="background: var(--color-link)"></div><span class="meta">--color-link</span></div>
+        <div class="stack" style="--stack-space: var(--space-xs)"><div class="swatch" style="background: var(--color-success)"></div><span class="meta">--color-success</span></div>
+        <div class="stack" style="--stack-space: var(--space-xs)"><div class="swatch" style="background: var(--color-warning)"></div><span class="meta">--color-warning</span></div>
+        <div class="stack" style="--stack-space: var(--space-xs)"><div class="swatch" style="background: var(--color-danger)"></div><span class="meta">--color-danger</span></div>
       </div>
 
       <h3>Type scale</h3>
-      <div class="stack" style="--stack-space: var(--space-2xs)">
+      <div class="stack" style="--stack-space: var(--space-xs)">
         <div style="font-size: var(--step-down-2)">Step down-2 <span class="meta">--step-down-2</span></div>
         <div style="font-size: var(--step-down-1)">Step down-1 <span class="meta">--step-down-1</span></div>
         <div style="font-size: var(--step-0)">Step 0 <span class="meta">--step-0</span></div>
@@ -56,20 +56,17 @@
       </div>
 
       <h3>Space scale</h3>
-      <div class="stack" style="--stack-space: var(--space-2xs)">
-        <div class="cluster"><span class="meta" style="inline-size: 9ch">3xs</span><div class="bar" style="inline-size: var(--space-3xs)"></div></div>
-        <div class="cluster"><span class="meta" style="inline-size: 9ch">2xs</span><div class="bar" style="inline-size: var(--space-2xs)"></div></div>
+      <div class="stack" style="--stack-space: var(--space-xs)">
         <div class="cluster"><span class="meta" style="inline-size: 9ch">xs</span><div class="bar" style="inline-size: var(--space-xs)"></div></div>
         <div class="cluster"><span class="meta" style="inline-size: 9ch">s</span><div class="bar" style="inline-size: var(--space-s)"></div></div>
         <div class="cluster"><span class="meta" style="inline-size: 9ch">m</span><div class="bar" style="inline-size: var(--space-m)"></div></div>
         <div class="cluster"><span class="meta" style="inline-size: 9ch">l</span><div class="bar" style="inline-size: var(--space-l)"></div></div>
         <div class="cluster"><span class="meta" style="inline-size: 9ch">xl</span><div class="bar" style="inline-size: var(--space-xl)"></div></div>
-        <div class="cluster"><span class="meta" style="inline-size: 9ch">2xl</span><div class="bar" style="inline-size: var(--space-2xl)"></div></div>
-        <div class="cluster"><span class="meta" style="inline-size: 9ch">3xl</span><div class="bar" style="inline-size: var(--space-3xl)"></div></div>
+        <div class="cluster"><span class="meta" style="inline-size: 9ch">xxl</span><div class="bar" style="inline-size: var(--space-xxl)"></div></div>
       </div>
 
       <h3>Radius, borders, shadows</h3>
-      <div class="grid grid-4" style="--grid-min: 8rem">
+      <div class="grid grid--auto-4" style="--grid-min: 8rem">
         <div class="tile" style="border-radius: var(--radius-s); border: var(--border)"><span class="meta">radius-s</span></div>
         <div class="tile" style="border-radius: var(--radius-m); border: var(--border)"><span class="meta">radius-m</span></div>
         <div class="tile" style="border-radius: var(--radius-l); border: var(--border)"><span class="meta">radius-l</span></div>
@@ -81,7 +78,7 @@
 
       <h3>Z-index and containers</h3>
       <p class="meta">--z-below -1 · base 0 · raised 10 · dropdown 100 · sticky 200 · overlay 300 · modal 400 · toast 500</p>
-      <p class="meta">--container-narrow 40rem · base 64rem · wide 80rem · --measure 65ch · --tap-target 2.75rem</p>
+      <p class="meta">--container--narrow 40rem · base 64rem · wide 80rem · --measure 65ch · --tap-target 2.75rem</p>
     </section>
 
     <section class="stack" id="typography">
@@ -126,9 +123,9 @@
       <h2>Layouts</h2>
 
       <h3>.container variants</h3>
-      <div class="container container-narrow box">.container-narrow</div>
+      <div class="container container--narrow box">.container--narrow</div>
       <div class="container box">.container</div>
-      <div class="container container-wide box">.container-wide</div>
+      <div class="container container--wide box">.container--wide</div>
 
       <h3>.grid (auto-fit, 16rem min)</h3>
       <div class="grid">
@@ -136,8 +133,8 @@
         <div class="box">Four</div><div class="box">Five</div>
       </div>
 
-      <h3>.grid-3 (up to 3 columns, collapses when narrow)</h3>
-      <div class="grid grid-3">
+      <h3>.grid--auto-3 (up to 3 columns, collapses when narrow)</h3>
+      <div class="grid grid--auto-3">
         <div class="box">One</div><div class="box">Two</div><div class="box">Three</div>
         <div class="box">Four</div><div class="box">Five</div><div class="box">Six</div>
       </div>
@@ -147,8 +144,8 @@
         <div class="box">Item</div><div class="box">Item</div><div class="box">Item</div>
       </div>
 
-      <h3>.cluster (.cluster-between)</h3>
-      <div class="cluster cluster-between box">
+      <h3>.cluster (.cluster--between)</h3>
+      <div class="cluster cluster--between box">
         <span>Brand</span>
         <span class="cluster"><a href="#layouts">Docs</a><a href="#layouts">Blog</a><a href="#layouts">About</a></span>
       </div>
@@ -160,8 +157,8 @@
       </div>
 
       <h3>Gap utilities</h3>
-      <div class="cluster gap-3xs box"><span class="box">gap-3xs</span><span class="box">gap-3xs</span><span class="box">gap-3xs</span></div>
-      <div class="cluster gap-l box"><span class="box">gap-l</span><span class="box">gap-l</span><span class="box">gap-l</span></div>
+      <div class="cluster gap--xs box"><span class="box">gap--xs</span><span class="box">gap--xs</span><span class="box">gap--xs</span></div>
+      <div class="cluster gap--xl box"><span class="box">gap--xl</span><span class="box">gap--xl</span><span class="box">gap--xl</span></div>
     </section>
 
   </main>

@@ -26,16 +26,13 @@
     --step-5: clamp(2.4883rem, 2.1597rem + 1.6433vw, 3.4332rem);
     --step-6: clamp(2.986rem, 2.5319rem + 2.2705vw, 4.2915rem);
 
-    /* Fluid space scale: same viewport range as the type scale */
-    --space-3xs: clamp(0.25rem, 0.2391rem + 0.0543vw, 0.2813rem);
-    --space-2xs: clamp(0.5rem, 0.4783rem + 0.1087vw, 0.5625rem);
-    --space-xs: clamp(0.75rem, 0.7174rem + 0.163vw, 0.8438rem);
-    --space-s: clamp(1rem, 0.9565rem + 0.2174vw, 1.125rem);
-    --space-m: clamp(1.5rem, 1.4348rem + 0.3261vw, 1.6875rem);
-    --space-l: clamp(2rem, 1.913rem + 0.4348vw, 2.25rem);
-    --space-xl: clamp(3rem, 2.8696rem + 0.6522vw, 3.375rem);
-    --space-2xl: clamp(4rem, 3.8261rem + 0.8696vw, 4.5rem);
-    --space-3xl: clamp(6rem, 5.7391rem + 1.3043vw, 6.75rem);
+    /* Fluid space scale: m is the base (1rem → 1.125rem); same viewport range as type */
+    --space-xs: clamp(0.5rem, 0.4783rem + 0.1087vw, 0.5625rem);
+    --space-s: clamp(0.75rem, 0.7174rem + 0.163vw, 0.8438rem);
+    --space-m: clamp(1rem, 0.9565rem + 0.2174vw, 1.125rem);
+    --space-l: clamp(1.5rem, 1.4348rem + 0.3261vw, 1.6875rem);
+    --space-xl: clamp(2rem, 1.913rem + 0.4348vw, 2.25rem);
+    --space-xxl: clamp(3rem, 2.8696rem + 0.6522vw, 3.375rem);
 
     /* Colors: light-dark(light, dark). Force a theme with data-theme="light|dark". */
     --color-bg: light-dark(#fff, #0f1115);
