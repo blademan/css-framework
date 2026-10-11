@@ -61,7 +61,7 @@
     transition: color var(--transition);
   }
 
-  :where(ul, ol) {
+  :where(ul:not([role="list"]), ol:not([role="list"])) {
     padding-inline-start: 1.5em;
   }
 
