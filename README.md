@@ -4,8 +4,9 @@ A zero-dependency, zero-build vanilla CSS framework. Small token set, fluid
 type and space scales, near-zero specificity, readable defaults. Designed to
 be consumed as a Git submodule.
 
-Modern CSS only: `@layer`, custom properties, `clamp()`, `:where()`,
-`light-dark()`, logical properties, intrinsic grid/flex layouts.
+Modern CSS only: `@layer`, custom properties, `pow()`, `:where()`, `oklch()`,
+`light-dark()`, logical properties, intrinsic grid/flex layouts. It follows the
+[good-css](https://github.com/vojtaholik/good-css) practices.
 No fonts, no CDN, no JavaScript, no build step.
 
 ## Structure
@@ -84,7 +85,7 @@ as-is. Add your own styles in a layer to slot into the order:
 
 | Class | What it does |
 |---|---|
-| `.container`, `--narrow`, `--wide` | Centered page column with `--gutter` side padding |
+| `.container`, `--narrow`, `--wide` | Page grid with named widths. Children sit in the content column; add `.breakout` or `.full-width` on a child for more |
 | `.section--xs` … `--xxl` | Block padding from `--section-space-*` |
 | `.grid` | Auto-fit columns, at least `--grid-min` (16rem) wide |
 | `.grid--1` … `--6` | Exactly N equal columns |
@@ -93,7 +94,8 @@ as-is. Add your own styles in a layer to slot into the order:
 | `.grid--l-1` … `--l-3`, `.grid--m-1` … `--m-3` | Override the column count at 64em / 48em and below |
 | `.col-span--2` … `--6`, `.col-span--full` | Span columns |
 | `.order--first`, `.order--last` | Move a grid or flex item |
-| `.stack` | Vertical rhythm (`--stack-space`) |
+| `.stack` | Components with known children: one flex gap (`--stack-space`) |
+| `.flow` | Content you do not control (CMS, Markdown): parent-set margin between children, headings ask for more room |
 | `.cluster`, `--start`, `--center`, `--end`, `--between` | Wrapping row |
 | `.sidebar-layout`, `--reverse` | Intrinsic sidebar + content |
 | `.gap--xs` … `--xxl` | Gap from the space scale (utilities layer) |
@@ -102,11 +104,30 @@ Every `.grid--*` class sets `display: grid` itself; no extra `.grid` needed.
 The framework stays small on purpose: new classes are added only when a
 pattern cannot be done with these plus your own CSS.
 
+## Good CSS rules this framework follows
+
+- Logical properties only (`inline`/`block`), no left/right/top/bottom.
+- Colors are `oklch()`, grays use `none` as the hue, hover and tint states are
+  derived with `color-mix(in oklch, …)`.
+- One fluid scale: type and space come from six numbers in `variables.css`
+  (`--narrow`, `--wide`, `--size-*`, `--ratio-*`), computed with `pow()`.
+- Hover styles only inside `(hover: hover) and (pointer: fine)`; every button
+  has an `:active` state; focus uses `:focus-visible` and `outline`, never
+  `outline: none`.
+- Motion is opt-in inside `prefers-reduced-motion: no-preference`, with named
+  properties, two easing curves and no `ease-in`.
+- The page container is one grid with content, breakout and full-width
+  columns instead of a centered `max-width` wrapper.
+- Spacing between siblings is set by the parent (`gap` or `.flow`), never by
+  the children.
+- Add `<meta name="color-scheme" content="light dark">` to your `<head>` so the
+  right background paints before the CSS loads.
+
 ## Theming
 
 Colors use `light-dark()` with `color-scheme: light dark`, so they follow the
 OS setting. Force a theme with `<html data-theme="light">` or `"dark"`.
-Animations and smooth scrolling are disabled under `prefers-reduced-motion`.
+Smooth scrolling and press transitions only run under `prefers-reduced-motion: no-preference`.
 
 ## Breakpoints
 
