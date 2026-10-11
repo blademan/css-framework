@@ -1,0 +1,173 @@
+@layer layout {
+  /* Centered, padded page column. Override --gutter per element if needed. */
+  .container {
+    --container-max: var(--container-base);
+
+    inline-size: 100%;
+    max-inline-size: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter, var(--space-s));
+  }
+
+  .container-narrow {
+    --container-max: var(--container-narrow);
+  }
+
+  .container-wide {
+    --container-max: var(--container-wide);
+  }
+
+  /* Auto-fit grid: as many columns of at least --grid-min as fit. No media queries. */
+  .grid {
+    --grid-min: 16rem;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-min), 100%), 1fr));
+    gap: var(--grid-gap, var(--space-m));
+  }
+
+  /* Column modifiers: up to N columns, collapsing when items would drop below --grid-min */
+  .grid-2 {
+    --grid-cols: 2;
+  }
+
+  .grid-3 {
+    --grid-cols: 3;
+  }
+
+  .grid-4 {
+    --grid-cols: 4;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    --grid-min: 12rem;
+    --grid-gap: var(--space-m);
+
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(
+        min(100%, max(var(--grid-min), (100% - (var(--grid-cols) - 1) * var(--grid-gap)) / var(--grid-cols))),
+        1fr
+      )
+    );
+  }
+
+  /* Vertical rhythm between direct children */
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--stack-space, var(--space-m));
+  }
+
+  .stack > * {
+    margin-block: 0;
+  }
+
+  /* Wrapping row of items (buttons, tags, nav links) */
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--cluster-space, var(--space-s));
+  }
+
+  .cluster-start {
+    justify-content: flex-start;
+  }
+
+  .cluster-center {
+    justify-content: center;
+  }
+
+  .cluster-end {
+    justify-content: flex-end;
+  }
+
+  .cluster-between {
+    justify-content: space-between;
+  }
+
+  /* Intrinsic two-pane layout: first child is the sidebar, last child is the content.
+     Wraps to one column when the content would get narrower than 50%. */
+  .sidebar-layout {
+    --sidebar-width: 16rem;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sidebar-gap, var(--space-m));
+  }
+
+  .sidebar-layout > :first-child {
+    flex-basis: var(--sidebar-width);
+    flex-grow: 1;
+  }
+
+  .sidebar-layout > :last-child {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-inline-size: 50%;
+  }
+
+  .sidebar-layout-reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+/* Gap utilities from the space scale; they beat the layout defaults */
+@layer utilities {
+  .gap-3xs {
+    --grid-gap: var(--space-3xs);
+
+    gap: var(--grid-gap);
+  }
+
+  .gap-2xs {
+    --grid-gap: var(--space-2xs);
+
+    gap: var(--grid-gap);
+  }
+
+  .gap-xs {
+    --grid-gap: var(--space-xs);
+
+    gap: var(--grid-gap);
+  }
+
+  .gap-s {
+    --grid-gap: var(--space-s);
+
+    gap: var(--grid-gap);
+  }
+
+  .gap-m {
+    --grid-gap: var(--space-m);
+
+    gap: var(--grid-gap);
+  }
+
+  .gap-l {
+    --grid-gap: var(--space-l);
+
+    gap: var(--grid-gap);
+  }
+
+  .gap-xl {
+    --grid-gap: var(--space-xl);
+
+    gap: var(--grid-gap);
+  }
+
+  .gap-2xl {
+    --grid-gap: var(--space-2xl);
+
+    gap: var(--grid-gap);
+  }
+
+  .gap-3xl {
+    --grid-gap: var(--space-3xl);
+
+    gap: var(--grid-gap);
+  }
+}
