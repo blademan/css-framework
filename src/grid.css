@@ -1,20 +1,39 @@
 @layer layout {
-  /* Centered, padded page column. Override --gutter per element if needed. */
+  /* Page container: one grid with three named widths (content, breakout, full-width).
+     Every direct child sits in the content column unless it asks for more. */
   .container {
-    --container-max: var(--container-base);
+    --content: var(--container-base);
+    --breakout: calc(var(--content) * 1.25);
 
-    inline-size: 100%;
-    max-inline-size: var(--container-max);
-    margin-inline: auto;
-    padding-inline: var(--gutter);
+    display: grid;
+    grid-template-columns:
+      [full-width-start] minmax(var(--gutter), 1fr)
+      [breakout-start] minmax(0, calc((var(--breakout) - var(--content)) / 2))
+      [content-start] min(100% - var(--gutter) * 2, var(--content)) [content-end]
+      minmax(0, calc((var(--breakout) - var(--content)) / 2)) [breakout-end]
+      minmax(var(--gutter), 1fr) [full-width-end];
   }
 
   .container--narrow {
-    --container-max: var(--container-narrow);
+    --content: var(--container-narrow);
   }
 
   .container--wide {
-    --container-max: var(--container-wide);
+    --content: var(--container-wide);
+  }
+
+  :is(.container, .full-width) > * {
+    grid-column: content;
+  }
+
+  :is(.container, .full-width) > .breakout {
+    grid-column: breakout;
+  }
+
+  :is(.container, .full-width) > .full-width {
+    grid-column: full-width;
+    display: grid;
+    grid-template-columns: inherit;
   }
 
   /* Every grid class is self-sufficient: no extra .grid needed. */
@@ -194,15 +213,30 @@
     padding-block: var(--section-space-xxl);
   }
 
-  /* Vertical rhythm between direct children */
+  /* Components with known children: one gap set by the parent. Direct children stretch;
+     give a button or link align-self: start. */
   .stack {
     display: flex;
     flex-direction: column;
     gap: var(--stack-space, var(--space-m));
   }
 
-  .stack > * {
+  /* Flowing content you do not control (CMS, Markdown): the parent sets the space.
+     A child can ask for more room above itself with --flow-space. */
+  .flow > * {
     margin-block: 0;
+  }
+
+  .flow > * + * {
+    margin-block-start: var(--flow-space, 1em);
+  }
+
+  .flow > :is(h1, h2, h3, h4, h5, h6) {
+    --flow-space: 2em;
+  }
+
+  .flow > :is(h1, h2, h3, h4, h5, h6) + * {
+    --flow-space: 0.5em;
   }
 
   /* Wrapping row of items (buttons, tags, nav links) */
