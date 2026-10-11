@@ -68,17 +68,39 @@ as-is. Add your own styles in a layer to slot into the order:
 ## Naming conventions
 
 - **Tokens have no prefix**: `--space-m`, `--step-2`, `--color-text`.
-  Groups: `--font-*`, `--step-*`, `--space-*`, `--color-*`, `--radius-*`,
-  `--border*`, `--shadow-*`, `--duration-*`, `--container-*`, `--z-*`.
-- **Classes are plain, lowercase and short**: `.container`, `.grid`, `.stack`,
-  `.cluster`, `.sidebar-layout`. Modifiers are a second class with a hyphen:
-  `.container-narrow`, `.grid-3`, `.cluster-between`. Utilities are
-  `.gap-{size}` using the space scale names (`3xs` … `3xl`).
+  Groups: `--font-*`, `--step-*`, `--space-*`, `--section-space-*`, `--gutter`,
+  `--color-*`, `--radius-*`, `--border*`, `--shadow-*`, `--duration-*`,
+  `--container-*`, `--z-*`.
+- **Sizes are T-shirt sizes**: `xs, s, m, l, xl, xxl`. `m` is the base (1rem).
+- **Classes are plain and lowercase; modifiers use `--`**: `.container`,
+  `.container--narrow`, `.grid--3`, `.cluster--between`, `.gap--m`.
 - **Per-component knobs are local custom properties**: `--grid-min`,
   `--grid-gap`, `--stack-space`, `--cluster-space`, `--sidebar-width`,
   `--gutter`. Set them inline or in your own CSS.
 - **Prefixing**: there is deliberately no prefix. If you need one, rename on
   adoption with a search and replace; nothing in the framework depends on it.
+
+## Class reference
+
+| Class | What it does |
+|---|---|
+| `.container`, `--narrow`, `--wide` | Centered page column with `--gutter` side padding |
+| `.section--xs` … `--xxl` | Block padding from `--section-space-*` |
+| `.grid` | Auto-fit columns, at least `--grid-min` (16rem) wide |
+| `.grid--1` … `--6` | Exactly N equal columns |
+| `.grid--auto-2` … `--auto-6` | Up to N columns, wrapping with no media queries |
+| `.grid--1-2`, `--2-1`, `--1-3`, `--3-1`, `--2-3`, `--3-2` | Uneven column ratios |
+| `.grid--l-1` … `--l-3`, `.grid--m-1` … `--m-3` | Override the column count at 64em / 48em and below |
+| `.col-span--2` … `--6`, `.col-span--full` | Span columns |
+| `.order--first`, `.order--last` | Move a grid or flex item |
+| `.stack` | Vertical rhythm (`--stack-space`) |
+| `.cluster`, `--start`, `--center`, `--end`, `--between` | Wrapping row |
+| `.sidebar-layout`, `--reverse` | Intrinsic sidebar + content |
+| `.gap--xs` … `--xxl` | Gap from the space scale (utilities layer) |
+
+Every `.grid--*` class sets `display: grid` itself; no extra `.grid` needed.
+The framework stays small on purpose: new classes are added only when a
+pattern cannot be done with these plus your own CSS.
 
 ## Theming
 

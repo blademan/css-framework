@@ -78,7 +78,7 @@
 
       <h3>Z-index and containers</h3>
       <p class="meta">--z-below -1 · base 0 · raised 10 · dropdown 100 · sticky 200 · overlay 300 · modal 400 · toast 500</p>
-      <p class="meta">--container--narrow 40rem · base 64rem · wide 80rem · --measure 65ch · --tap-target 2.75rem</p>
+      <p class="meta">--container--narrow 40rem · base 64rem · wide 80rem · --measure 65ch · --tap-target 2.75rem · --gutter and --section-space-xs … xxl</p>
     </section>
 
     <section class="stack" id="typography">
@@ -128,15 +128,25 @@
       <div class="container container--wide box">.container--wide</div>
 
       <h3>.grid (auto-fit, 16rem min)</h3>
-      <div class="grid">
-        <div class="box">One</div><div class="box">Two</div><div class="box">Three</div>
-        <div class="box">Four</div><div class="box">Five</div>
-      </div>
+      <div class="grid"><div class="box">1</div><div class="box">2</div><div class="box">3</div><div class="box">4</div><div class="box">5</div></div>
 
-      <h3>.grid--auto-3 (up to 3 columns, collapses when narrow)</h3>
-      <div class="grid grid--auto-3">
-        <div class="box">One</div><div class="box">Two</div><div class="box">Three</div>
-        <div class="box">Four</div><div class="box">Five</div><div class="box">Six</div>
+      <h3>.grid--3 (exactly 3 equal columns)</h3>
+      <div class="grid--3"><div class="box">1</div><div class="box">2</div><div class="box">3</div><div class="box">4</div><div class="box">5</div><div class="box">6</div></div>
+
+      <h3>.grid--auto-3 (up to 3, wraps without media queries)</h3>
+      <div class="grid--auto-3"><div class="box">1</div><div class="box">2</div><div class="box">3</div><div class="box">4</div><div class="box">5</div><div class="box">6</div></div>
+
+      <h3>.grid--1-2 and .grid--3-1 (ratios)</h3>
+      <div class="grid--1-2"><div class="box">1</div><div class="box">2</div></div>
+      <div class="grid--3-1"><div class="box">1</div><div class="box">2</div></div>
+
+      <h3>.grid--4 .grid--l-2 .grid--m-1 (fewer columns at 64em / 48em and below)</h3>
+      <div class="grid--4 grid--l-2 grid--m-1"><div class="box">1</div><div class="box">2</div><div class="box">3</div><div class="box">4</div></div>
+
+      <h3>.col-span--2 and .order--first</h3>
+      <div class="grid--3">
+        <div class="box col-span--2">span 2</div><div class="box">1</div>
+        <div class="box">2</div><div class="box order--first">order--first</div><div class="box">3</div>
       </div>
 
       <h3>.stack</h3>
@@ -155,6 +165,10 @@
         <aside class="box">Sidebar (16rem basis)</aside>
         <div class="box">Content takes the remaining space and wraps below the sidebar when it would drop under 50% width.</div>
       </div>
+
+      <h3>.section--xs … .section--xxl (block padding)</h3>
+      <div class="section--xs" style="background: var(--color-surface); border: var(--border)">.section--xs</div>
+      <div class="section--m" style="background: var(--color-surface); border: var(--border)">.section--m</div>
 
       <h3>Gap utilities</h3>
       <div class="cluster gap--xs box"><span class="box">gap--xs</span><span class="box">gap--xs</span><span class="box">gap--xs</span></div>
